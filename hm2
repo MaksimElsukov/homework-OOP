@@ -1,0 +1,39 @@
+import ast
+import os
+
+result_file = {}
+length = 0
+for filename in os.listdir(): 
+    if  filename.find(".txt") == -1 or  filename.find("united.txt") != -1 or  filename.find("recipes.txt") != -1: 
+           continue   
+    with open(filename,'r',encoding="utf-8") as file:
+       text = filename+"|"+file.read()
+       file.seek(0)
+       length = sum(1 for line in file.readlines())
+       result_file[length] = text
+    file.close()
+file_len= list(result_file.keys()) 
+file_len.sort()   
+
+with open('united. txt','w',encoding="utf-8") as file:
+    for i in file_len:
+        data = ""
+        data = result_file[i]
+        pop = data.split("|")
+        file.write(f'{pop[0]}\n')
+        len = i
+        file.write(f'{str(len)}\n')
+        file.write(f'{pop[1]}\n')
+file.close()
+
+with open('united. txt','r',encoding="utf-8") as file:
+    print(file.read())
+        # print(file.readlines())
+        
+
+
+
+
+
+
+
